@@ -1,140 +1,401 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy — VoidPattern</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>VoidPattern — Generative Art & Digital Products</title>
+  <meta name="description" content="Original algorithmic art prints, posters, and digital products by VoidPattern. Generative art created entirely with code — no brushes, no filters."/>
+  <meta property="og:title" content="VoidPattern — Generative Art"/>
+  <meta property="og:description" content="Original algorithmic art made entirely with code. Available as prints, phone cases, apparel and more."/>
+  <meta property="og:type" content="website"/>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #0d0d0d;
-      color: #e0e0e0;
-      line-height: 1.7;
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --bg:#080810;
+      --surface:#0e0e1a;
+      --border:#1e1e32;
+      --text:#e0e0f0;
+      --muted:#6a6a8a;
+      --accent:#7c5cfc;
+      --accent2:#00f5d4;
     }
-    header {
-      background: #111;
-      border-bottom: 1px solid #222;
-      padding: 20px 40px;
-    }
-    header h1 {
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: #fff;
-      letter-spacing: 0.05em;
-    }
-    header span {
-      color: #888;
-      font-size: 0.9rem;
-    }
-    .container {
-      max-width: 780px;
-      margin: 60px auto;
-      padding: 0 24px 80px;
-    }
-    h2 {
-      font-size: 1.6rem;
-      color: #fff;
-      margin-bottom: 8px;
-    }
-    .updated {
-      color: #666;
-      font-size: 0.85rem;
-      margin-bottom: 40px;
-    }
-    h3 {
-      font-size: 1.05rem;
-      color: #ccc;
-      margin: 32px 0 10px;
-    }
-    p, li {
-      color: #aaa;
-      font-size: 0.95rem;
-    }
-    ul {
-      padding-left: 20px;
-      margin-top: 6px;
-    }
-    li { margin-bottom: 6px; }
-    a { color: #7c8cff; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .contact-box {
-      background: #161616;
-      border: 1px solid #2a2a2a;
-      border-radius: 8px;
-      padding: 20px 24px;
-      margin-top: 40px;
-    }
-    .contact-box p { color: #888; font-size: 0.9rem; }
-    footer {
-      text-align: center;
-      padding: 30px;
-      color: #444;
-      font-size: 0.8rem;
-      border-top: 1px solid #1a1a1a;
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,16,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:16px 40px;display:flex;justify-content:space-between;align-items:center}
+    .logo{font-size:1.1rem;font-weight:700;letter-spacing:0.1em;color:#fff}
+    .logo span{color:var(--accent)}
+    .nav-links{display:flex;gap:28px;font-size:0.85rem;color:var(--muted)}
+    .nav-links a:hover{color:#fff}
+    .nav-cta{background:var(--accent);color:#fff;padding:8px 20px;border-radius:6px;font-size:0.85rem;font-weight:600;transition:opacity 0.2s}
+    .nav-cta:hover{opacity:0.85}
+
+    /* HERO */
+    .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
+    .hero-canvas{position:absolute;inset:0;opacity:0.15;pointer-events:none}
+    .hero h1{font-size:clamp(2.5rem,7vw,5.5rem);font-weight:800;line-height:1.1;letter-spacing:-0.02em;margin-bottom:24px;background:linear-gradient(135deg,#fff 0%,var(--accent2) 50%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero p{font-size:1.15rem;color:var(--muted);max-width:560px;margin:0 auto 40px}
+    .hero-btns{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+    .btn-primary{background:var(--accent);color:#fff;padding:14px 32px;border-radius:8px;font-weight:700;font-size:1rem;transition:all 0.2s}
+    .btn-primary:hover{background:#6a4de0;transform:translateY(-1px)}
+    .btn-secondary{border:1px solid var(--border);color:var(--text);padding:14px 32px;border-radius:8px;font-weight:600;font-size:1rem;transition:all 0.2s}
+    .btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+    .hero-sub{margin-top:60px;font-size:0.8rem;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase}
+
+    /* MARQUEE */
+    .marquee-wrap{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:14px 0;background:var(--surface)}
+    .marquee{display:flex;gap:48px;animation:scroll 30s linear infinite;white-space:nowrap}
+    .marquee span{font-size:0.78rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase}
+    .marquee span.accent{color:var(--accent2)}
+    @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* SECTION */
+    section{padding:100px 40px;max-width:1200px;margin:0 auto}
+    .section-label{font-size:0.75rem;color:var(--accent2);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px}
+    .section-title{font-size:clamp(1.8rem,4vw,3rem);font-weight:800;margin-bottom:16px;line-height:1.2}
+    .section-sub{font-size:1rem;color:var(--muted);max-width:500px;margin-bottom:48px}
+
+    /* GRID */
+    .grid-2{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:2px}
+    .art-card{position:relative;overflow:hidden;background:var(--surface);aspect-ratio:1}
+    .art-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;filter:brightness(0.9)}
+    .art-card:hover img{transform:scale(1.04);filter:brightness(1)}
+    .art-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,16,0.9) 0%,transparent 50%);opacity:0;transition:opacity 0.3s}
+    .art-card:hover .art-card-overlay{opacity:1}
+    .art-card-info{position:absolute;bottom:16px;left:16px;right:16px;opacity:0;transition:opacity 0.3s;transform:translateY(8px);transition:all 0.3s}
+    .art-card:hover .art-card-info{opacity:1;transform:translateY(0)}
+    .art-card-title{font-size:0.85rem;font-weight:600;color:#fff;margin-bottom:4px}
+    .art-card-link{font-size:0.75rem;color:var(--accent2)}
+
+    /* PRODUCTS */
+    .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+    .product-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px;transition:border-color 0.2s}
+    .product-card:hover{border-color:var(--accent)}
+    .product-badge{display:inline-block;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:4px;margin-bottom:16px}
+    .badge-free{background:rgba(0,245,212,0.1);color:var(--accent2);border:1px solid rgba(0,245,212,0.2)}
+    .badge-paid{background:rgba(124,92,252,0.1);color:var(--accent);border:1px solid rgba(124,92,252,0.2)}
+    .product-title{font-size:1.15rem;font-weight:700;margin-bottom:10px}
+    .product-desc{font-size:0.9rem;color:var(--muted);margin-bottom:20px;line-height:1.6}
+    .product-items{list-style:none;margin-bottom:24px}
+    .product-items li{font-size:0.85rem;color:var(--muted);padding:4px 0;display:flex;align-items:center;gap:8px}
+    .product-items li::before{content:'→';color:var(--accent2);font-size:0.75rem}
+    .btn-product{display:block;text-align:center;padding:12px;border-radius:8px;font-weight:700;font-size:0.9rem;transition:all 0.2s}
+    .btn-product.free{background:var(--accent2);color:#000}
+    .btn-product.free:hover{opacity:0.85}
+    .btn-product.paid{background:var(--accent);color:#fff}
+    .btn-product.paid:hover{opacity:0.85}
+
+    /* ABOUT */
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+    .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
+    .stat{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px}
+    .stat-num{font-size:2rem;font-weight:800;color:var(--accent2)}
+    .stat-label{font-size:0.8rem;color:var(--muted);margin-top:4px}
+    .about-visual{position:relative;height:400px;border-radius:12px;overflow:hidden;background:var(--surface)}
+    .about-visual canvas{width:100%;height:100%}
+
+    /* FOOTER */
+    footer{border-top:1px solid var(--border);padding:40px;text-align:center}
+    .footer-links{display:flex;justify-content:center;gap:32px;margin-bottom:16px;flex-wrap:wrap}
+    .footer-links a{font-size:0.85rem;color:var(--muted);transition:color 0.2s}
+    .footer-links a:hover{color:#fff}
+    .footer-copy{font-size:0.78rem;color:var(--muted)}
+
+    @media(max-width:768px){
+      nav{padding:14px 20px}
+      .nav-links{display:none}
+      section{padding:60px 20px}
+      .about-grid{grid-template-columns:1fr;gap:40px}
+      .about-visual{height:250px}
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>VoidPattern <span>/ Privacy Policy</span></h1>
-</header>
+<nav>
+  <div class="logo">Void<span>Pattern</span></div>
+  <div class="nav-links">
+    <a href="#art">Art Prints</a>
+    <a href="#products">Digital Products</a>
+    <a href="#about">About</a>
+    <a href="privacy-policy/">Privacy</a>
+  </div>
+  <a href="https://www.redbubble.com/portfolio/manage_works" class="nav-cta" target="_blank">Shop Now</a>
+</nav>
 
-<div class="container">
-  <h2>Privacy Policy</h2>
-  <p class="updated">Last updated: March 2026</p>
+<div class="hero">
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <div class="section-label">Generative Art Studio</div>
+  <h1>Art Made<br/>With Code</h1>
+  <p>Original algorithmic art prints — flow fields, fractals, attractors, and mathematical patterns. No brushes. No filters. Pure equations.</p>
+  <div class="hero-btns">
+    <a href="https://www.redbubble.com/people/voidpattern/shop" target="_blank" class="btn-primary">Browse Art Prints</a>
+    <a href="https://gumroad.com/l/umthe" target="_blank" class="btn-secondary">Free Templates</a>
+  </div>
+  <div class="hero-sub">20 designs · Redbubble print-on-demand · Ships worldwide</div>
+</div>
 
-  <p>This Privacy Policy describes how VoidPattern ("we", "us", or "our") handles information when you use our website, digital products, and services including designs sold on Redbubble and digital downloads sold on Gumroad.</p>
-
-  <h3>1. Information We Collect</h3>
-  <p>We do not directly collect personal information on this site. When you purchase our products through third-party platforms (Gumroad, Redbubble), those platforms collect and process your data under their own privacy policies:</p>
-  <ul>
-    <li><a href="https://gumroad.com/privacy" target="_blank">Gumroad Privacy Policy</a></li>
-    <li><a href="https://www.redbubble.com/explore/legal/privacy-policy" target="_blank">Redbubble Privacy Policy</a></li>
-    <li><a href="https://policy.pinterest.com/en/privacy-policy" target="_blank">Pinterest Privacy Policy</a></li>
-  </ul>
-
-  <h3>2. How We Use Information</h3>
-  <p>We use the Pinterest API to share our creative work (generative art and design products) on Pinterest. Through this integration, we access only the permissions required to post content to our own Pinterest boards. We do not access, store, or share your Pinterest account data.</p>
-
-  <h3>3. Pinterest API Usage</h3>
-  <p>Our application uses the Pinterest API solely to:</p>
-  <ul>
-    <li>Create and manage our own Pinterest boards</li>
-    <li>Pin our own original artwork and product links to those boards</li>
-    <li>Read our own account information to verify connectivity</li>
-  </ul>
-  <p>We do not collect, store, or share any data belonging to Pinterest users other than our own account.</p>
-
-  <h3>4. Cookies</h3>
-  <p>This website does not use cookies or any tracking technologies.</p>
-
-  <h3>5. Third-Party Services</h3>
-  <p>Our products and links may direct you to third-party platforms (Redbubble, Gumroad). We are not responsible for the privacy practices of those platforms.</p>
-
-  <h3>6. Data Retention</h3>
-  <p>We do not store any personal data on our servers. All purchase and user data is handled exclusively by the respective third-party platforms.</p>
-
-  <h3>7. Your Rights</h3>
-  <p>Depending on your location, you may have rights regarding your personal data including access, correction, deletion, and portability. For data held by third-party platforms, please refer to their respective privacy policies and support channels.</p>
-
-  <h3>8. Children's Privacy</h3>
-  <p>Our services are not directed to children under 13. We do not knowingly collect personal information from children.</p>
-
-  <h3>9. Changes to This Policy</h3>
-  <p>We may update this policy from time to time. Changes will be reflected by updating the "Last updated" date above.</p>
-
-  <div class="contact-box">
-    <h3 style="margin-top:0">10. Contact</h3>
-    <p>If you have any questions about this Privacy Policy, you can reach us at:<br/>
-    <a href="mailto:kylecaknis@gmail.com">kylecaknis@gmail.com</a></p>
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span>Sacred Geometry</span><span class="accent">·</span>
+    <span>Flow Fields</span><span class="accent">·</span>
+    <span>Strange Attractors</span><span class="accent">·</span>
+    <span>Barnsley Fern</span><span class="accent">·</span>
+    <span>Wave Interference</span><span class="accent">·</span>
+    <span>Voronoi Diagrams</span><span class="accent">·</span>
+    <span>Lissajous Curves</span><span class="accent">·</span>
+    <span>Phyllotaxis</span><span class="accent">·</span>
+    <span>Truchet Tiles</span><span class="accent">·</span>
+    <span>Spirographs</span><span class="accent">·</span>
+    <span>Rose Curves</span><span class="accent">·</span>
+    <span>Spiral Galaxies</span><span class="accent">·</span>
+    <!-- repeat for seamless loop -->
+    <span>Sacred Geometry</span><span class="accent">·</span>
+    <span>Flow Fields</span><span class="accent">·</span>
+    <span>Strange Attractors</span><span class="accent">·</span>
+    <span>Barnsley Fern</span><span class="accent">·</span>
+    <span>Wave Interference</span><span class="accent">·</span>
+    <span>Voronoi Diagrams</span><span class="accent">·</span>
+    <span>Lissajous Curves</span><span class="accent">·</span>
+    <span>Phyllotaxis</span><span class="accent">·</span>
+    <span>Truchet Tiles</span><span class="accent">·</span>
+    <span>Spirographs</span><span class="accent">·</span>
+    <span>Rose Curves</span><span class="accent">·</span>
+    <span>Spiral Galaxies</span><span class="accent">·</span>
   </div>
 </div>
 
+<section id="art">
+  <div class="section-label">The Collection</div>
+  <div class="section-title">20 Algorithmic Art Prints</div>
+  <div class="section-sub">Every design generated entirely with code. Available on art prints, canvas, phone cases, apparel, home decor, and more.</div>
+  <div class="grid-2">
+    <a href="https://www.redbubble.com/shop/ap/179122064" target="_blank" class="art-card">
+      <img src="https://ih1.redbubble.net/image.179122064.5551/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" alt="Sacred Geometry Indigo" loading="lazy" onerror="this.style.background='#1a1a2e';this.style.display='block';this.style.height='100%'"/>
+      <div class="art-card-overlay"></div>
+      <div class="art-card-info"><div class="art-card-title">Sacred Geometry — Indigo</div><div class="art-card-link">View on Redbubble →</div></div>
+    </a>
+    <a href="https://www.redbubble.com/shop/ap/179122492" target="_blank" class="art-card">
+      <img src="https://ih1.redbubble.net/image.179122492.5551/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" alt="Flow Field Ember" loading="lazy" onerror="this.style.background='#2d1a0a'"/>
+      <div class="art-card-overlay"></div>
+      <div class="art-card-info"><div class="art-card-title">Flow Field — Ember</div><div class="art-card-link">View on Redbubble →</div></div>
+    </a>
+    <a href="https://www.redbubble.com/shop/ap/179122574" target="_blank" class="art-card">
+      <img src="https://ih1.redbubble.net/image.179122574.5551/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" alt="Tessellation Arctic" loading="lazy" onerror="this.style.background='#0a1a2d'"/>
+      <div class="art-card-overlay"></div>
+      <div class="art-card-info"><div class="art-card-title">Tessellation — Arctic</div><div class="art-card-link">View on Redbubble →</div></div>
+    </a>
+    <a href="https://www.redbubble.com/shop/ap/179122601" target="_blank" class="art-card">
+      <img src="https://ih1.redbubble.net/image.179122601.5551/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" alt="Mandala Solar" loading="lazy" onerror="this.style.background='#1a1000'"/>
+      <div class="art-card-overlay"></div>
+      <div class="art-card-info"><div class="art-card-title">Mandala — Solar</div><div class="art-card-link">View on Redbubble →</div></div>
+    </a>
+    <a href="https://www.redbubble.com/shop/ap/179122617" target="_blank" class="art-card">
+      <img src="https://ih1.redbubble.net/image.179122617.5551/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" alt="Glitch Grid Cyber" loading="lazy" onerror="this.style.background='#000510'"/>
+      <div class="art-card-overlay"></div>
+      <div class="art-card-info"><div class="art-card-title">Glitch Grid — Cyber</div><div class="art-card-link">View on Redbubble →</div></div>
+    </a>
+    <a href="https://www.redbubble.com/shop/ap/179122642" target="_blank" class="art-card">
+      <img src="https://ih1.redbubble.net/image.179122642.5551/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" alt="Ocean Wave" loading="lazy" onerror="this.style.background='#001428'"/>
+      <div class="art-card-overlay"></div>
+      <div class="art-card-info"><div class="art-card-title">Wave Collapse — Ocean</div><div class="art-card-link">View on Redbubble →</div></div>
+    </a>
+    <a href="https://www.redbubble.com/shop/ap/179122668" target="_blank" class="art-card">
+      <img src="https://ih1.redbubble.net/image.179122668.5551/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" alt="Voronoi Forest" loading="lazy" onerror="this.style.background='#051408'"/>
+      <div class="art-card-overlay"></div>
+      <div class="art-card-info"><div class="art-card-title">Voronoi — Forest</div><div class="art-card-link">View on Redbubble →</div></div>
+    </a>
+    <a href="https://www.redbubble.com/shop/ap/179122689" target="_blank" class="art-card">
+      <img src="https://ih1.redbubble.net/image.179122689.5551/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" alt="Spiral Galaxy" loading="lazy" onerror="this.style.background='#080010'"/>
+      <div class="art-card-overlay"></div>
+      <div class="art-card-info"><div class="art-card-title">Spiral Galaxy — Cosmic</div><div class="art-card-link">View on Redbubble →</div></div>
+    </a>
+    <a href="https://www.redbubble.com/shop/ap/179122712" target="_blank" class="art-card">
+      <img src="https://ih1.redbubble.net/image.179122712.5551/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" alt="Broken Glass Neon" loading="lazy" onerror="this.style.background='#000508'"/>
+      <div class="art-card-overlay"></div>
+      <div class="art-card-info"><div class="art-card-title">Broken Glass — Neon</div><div class="art-card-link">View on Redbubble →</div></div>
+    </a>
+    <a href="https://www.redbubble.com/shop/ap/179122730" target="_blank" class="art-card">
+      <img src="https://ih1.redbubble.net/image.179122730.5551/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" alt="Minimal Lines Zen" loading="lazy" onerror="this.style.background='#f5f5f5'"/>
+      <div class="art-card-overlay"></div>
+      <div class="art-card-info"><div class="art-card-title">Minimal Lines — Zen</div><div class="art-card-link">View on Redbubble →</div></div>
+    </a>
+    <a href="https://www.redbubble.com/shop/ap/179129197" target="_blank" class="art-card">
+      <img src="https://ih1.redbubble.net/image.179129197.5551/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" alt="Lissajous Teal" loading="lazy" onerror="this.style.background='#020818'"/>
+      <div class="art-card-overlay"></div>
+      <div class="art-card-info"><div class="art-card-title">Lissajous — Teal Aurora</div><div class="art-card-link">View on Redbubble →</div></div>
+    </a>
+    <a href="https://www.redbubble.com/shop/ap/179129238" target="_blank" class="art-card">
+      <img src="https://ih1.redbubble.net/image.179129238.5551/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" alt="Rose Curves Gold" loading="lazy" onerror="this.style.background='#0a0500'"/>
+      <div class="art-card-overlay"></div>
+      <div class="art-card-info"><div class="art-card-title">Rose Curves — Gold Bloom</div><div class="art-card-link">View on Redbubble →</div></div>
+    </a>
+    <a href="https://www.redbubble.com/shop/ap/179129278" target="_blank" class="art-card">
+      <img src="https://ih1.redbubble.net/image.179129278.5551/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" alt="Truchet Ink Flow" loading="lazy" onerror="this.style.background='#faf7f2'"/>
+      <div class="art-card-overlay"></div>
+      <div class="art-card-info"><div class="art-card-title">Truchet — Ink Flow</div><div class="art-card-link">View on Redbubble →</div></div>
+    </a>
+    <a href="https://www.redbubble.com/shop/ap/179129312" target="_blank" class="art-card">
+      <img src="https://ih1.redbubble.net/image.179129312.5551/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" alt="Strange Attractor" loading="lazy" onerror="this.style.background='#0a0005'"/>
+      <div class="art-card-overlay"></div>
+      <div class="art-card-info"><div class="art-card-title">Strange Attractor — Crimson</div><div class="art-card-link">View on Redbubble →</div></div>
+    </a>
+    <a href="https://www.redbubble.com/shop/ap/179129347" target="_blank" class="art-card">
+      <img src="https://ih1.redbubble.net/image.179129347.5551/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" alt="Spirograph Rose Gold" loading="lazy" onerror="this.style.background='#1a0a10'"/>
+      <div class="art-card-overlay"></div>
+      <div class="art-card-info"><div class="art-card-title">Spirograph — Rose Gold</div><div class="art-card-link">View on Redbubble →</div></div>
+    </a>
+    <a href="https://www.redbubble.com/shop/ap/179129380" target="_blank" class="art-card">
+      <img src="https://ih1.redbubble.net/image.179129380.5551/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" alt="Barnsley Fern" loading="lazy" onerror="this.style.background='#010f07'"/>
+      <div class="art-card-overlay"></div>
+      <div class="art-card-info"><div class="art-card-title">Barnsley Fern — Emerald</div><div class="art-card-link">View on Redbubble →</div></div>
+    </a>
+    <a href="https://www.redbubble.com/shop/ap/179129421" target="_blank" class="art-card">
+      <img src="https://ih1.redbubble.net/image.179129421.5551/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" alt="Contour Map" loading="lazy" onerror="this.style.background='#f5e6c8'"/>
+      <div class="art-card-overlay"></div>
+      <div class="art-card-info"><div class="art-card-title">Contour Map — Desert Ridge</div><div class="art-card-link">View on Redbubble →</div></div>
+    </a>
+    <a href="https://www.redbubble.com/shop/ap/179129450" target="_blank" class="art-card">
+      <img src="https://ih1.redbubble.net/image.179129450.5551/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" alt="Hex Grid Neon" loading="lazy" onerror="this.style.background='#05000f'"/>
+      <div class="art-card-overlay"></div>
+      <div class="art-card-info"><div class="art-card-title">Hex Grid — Neon Night</div><div class="art-card-link">View on Redbubble →</div></div>
+    </a>
+    <a href="https://www.redbubble.com/shop/ap/179129483" target="_blank" class="art-card">
+      <img src="https://ih1.redbubble.net/image.179129483.5551/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" alt="Phyllotaxis" loading="lazy" onerror="this.style.background='#04010a'"/>
+      <div class="art-card-overlay"></div>
+      <div class="art-card-info"><div class="art-card-title">Phyllotaxis — Cosmic Seeds</div><div class="art-card-link">View on Redbubble →</div></div>
+    </a>
+    <a href="https://www.redbubble.com/shop/ap/179129521" target="_blank" class="art-card">
+      <img src="https://ih1.redbubble.net/image.179129521.5551/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" alt="Interference Iridescent" loading="lazy" onerror="this.style.background='#000'"/>
+      <div class="art-card-overlay"></div>
+      <div class="art-card-info"><div class="art-card-title">Interference — Iridescent</div><div class="art-card-link">View on Redbubble →</div></div>
+    </a>
+  </div>
+</section>
+
+<section id="products" style="background:var(--surface);max-width:100%;padding:100px 40px">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="section-label">Digital Products</div>
+    <div class="section-title">Tools That Pay You Back</div>
+    <div class="section-sub">Practical digital products built for freelancers, side hustlers, and creative entrepreneurs.</div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-badge badge-free">Free Download</div>
+        <div class="product-title">Ultimate Productivity Template Pack</div>
+        <div class="product-desc">5 interactive browser-based tools. No app. No signup. Open and use.</div>
+        <ul class="product-items">
+          <li>Budget Tracker with live calculations</li>
+          <li>90-Day Goal Planner</li>
+          <li>Freelance Rate Calculator</li>
+          <li>Content Calendar (all platforms)</li>
+          <li>Business One-Pager template</li>
+        </ul>
+        <a href="https://gumroad.com/l/umthe" target="_blank" class="btn-product free">Download Free →</a>
+      </div>
+      <div class="product-card">
+        <div class="product-badge badge-paid">Paid Guide</div>
+        <div class="product-title">AI Side Hustle Playbook 2026</div>
+        <div class="product-desc">The exact system for building passive income with AI tools. No theory. Real workflows.</div>
+        <ul class="product-items">
+          <li>Print-on-demand with generative AI art</li>
+          <li>Digital products pipeline (Gumroad/Etsy)</li>
+          <li>Traffic without paid ads</li>
+          <li>Full automation setup guide</li>
+          <li>The passive income stack blueprint</li>
+        </ul>
+        <a href="https://gumroad.com/l/mowle" target="_blank" class="btn-product paid">Get the Playbook →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-label">About VoidPattern</div>
+      <div class="section-title">Mathematics as Art</div>
+      <p style="color:var(--muted);margin-bottom:16px">VoidPattern is a generative art studio. Every design is created entirely with code — Python scripts, mathematical equations, and algorithmic processes that produce genuinely original imagery.</p>
+      <p style="color:var(--muted)">No Photoshop. No filters. No AI image generators. Just mathematics, rendered.</p>
+      <div class="about-stats">
+        <div class="stat"><div class="stat-num">20</div><div class="stat-label">Original designs</div></div>
+        <div class="stat"><div class="stat-num">70+</div><div class="stat-label">Products per design</div></div>
+        <div class="stat"><div class="stat-num">0</div><div class="stat-label">Brushes used</div></div>
+        <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Equations</div></div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <canvas id="aboutCanvas" style="width:100%;height:100%"></canvas>
+    </div>
+  </div>
+</section>
+
 <footer>
-  &copy; 2026 VoidPattern. All rights reserved.
+  <div class="footer-links">
+    <a href="https://www.redbubble.com/people/voidpattern/shop" target="_blank">Redbubble Shop</a>
+    <a href="https://gumroad.com/l/umthe" target="_blank">Free Templates</a>
+    <a href="https://gumroad.com/l/mowle" target="_blank">AI Playbook</a>
+    <a href="privacy-policy/">Privacy Policy</a>
+  </div>
+  <div class="footer-copy">&copy; 2026 VoidPattern by Kyle Caknis. All designs algorithmically generated.</div>
 </footer>
 
+<script>
+// Hero canvas — animated flow field
+(function(){
+  const canvas=document.getElementById('heroCanvas');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  let w,h,t=0;
+  function resize(){w=canvas.width=window.innerWidth;h=canvas.height=window.innerHeight;}
+  resize();window.addEventListener('resize',resize);
+  function n(x,y,t){return Math.sin(x*0.008+t*0.3)*Math.cos(y*0.006+t*0.2)+Math.sin(x*0.003-y*0.005+t*0.1);}
+  function draw(){
+    ctx.fillStyle='rgba(8,8,16,0.08)';
+    ctx.fillRect(0,0,w,h);
+    const step=28;
+    for(let x=0;x<w;x+=step){
+      for(let y=0;y<h;y+=step){
+        const angle=n(x,y,t)*Math.PI*2;
+        const len=step*0.6;
+        const hue=(angle*180/Math.PI+t*20)%360;
+        ctx.beginPath();
+        ctx.moveTo(x,y);
+        ctx.lineTo(x+Math.cos(angle)*len,y+Math.sin(angle)*len);
+        ctx.strokeStyle=`hsla(${hue},80%,60%,0.15)`;
+        ctx.lineWidth=1;
+        ctx.stroke();
+      }
+    }
+    t+=0.004;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// About canvas — live flow field
+(function(){
+  const canvas=document.getElementById('aboutCanvas');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const w=canvas.width=500,h=canvas.height=400;
+  let pts=[];
+  for(let i=0;i<120;i++)pts.push({x:Math.random()*w,y:Math.random()*h,hue:Math.random()*360});
+  function n(x,y,t){return Math.sin(x*0.012+t*0.5)*Math.cos(y*0.01+t*0.3);}
+  let t=0;
+  function draw(){
+    ctx.fillStyle='rgba(14,14,26,0.05)';ctx.fillRect(0,0,w,h);
+    pts.forEach(p=>{
+      const a=n(p.x,p.y,t)*Math.PI*3;
+      p.x+=Math.cos(a)*1.5;p.y+=Math.sin(a)*1.5;
+      if(p.x<0||p.x>w||p.y<0||p.y>h){p.x=Math.random()*w;p.y=Math.random()*h;}
+      ctx.beginPath();ctx.arc(p.x,p.y,1.5,0,Math.PI*2);
+      ctx.fillStyle=`hsla(${p.hue},80%,65%,0.6)`;ctx.fill();
+    });
+    t+=0.008;requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
 </body>
 </html>
